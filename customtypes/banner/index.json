@@ -1,0 +1,28 @@
+{
+  "id": "banner",
+  "label": "banner",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "title",
+          "placeholder": "Titre de la bannière",
+          "allowTargetBlank": true,
+          "single": "heading1"
+        }
+      },
+      "banner_content": {
+        "type": "StructuredText",
+        "config": {
+          "label": "banner content",
+          "placeholder": "Contenu de la bannière",
+          "allowTargetBlank": true,
+          "single": "paragraph"
+        }
+      }
+    }
+  }
+}
