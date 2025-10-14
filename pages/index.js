@@ -1,24 +1,19 @@
-import React from 'react'
-import Head from 'next/head'
-import Link from 'next/link'
-import Router from "next/router";
 import withGA from "next-ga";
+import Head from 'next/head';
+import Link from 'next/link';
+import Router from "next/router";
+import React from 'react';
 
-import Nav from '../components/nav'
-import Gallery from '../components/Gallery'
-import Footer from '../components/Footer'
-import AboutUs from '../components/AboutUs'
-import Events from '../components/Events'
+import { PrismicProvider, PrismicRichText } from '@prismicio/react';
+import AboutUs from '../components/AboutUs';
+import Events from '../components/Events';
+import Footer from '../components/Footer';
+import Nav from '../components/nav';
 import ResponsiveEmbed from '../components/ResponsiveEmbed';
-import GalleryTwo from '../components/GalleryTwo';
-import { PrismicProvider, PrismicRichText } from '@prismicio/react'
-import { PrismicPreview } from '@prismicio/next'
-import { linkResolver, repositoryName } from '../prismicio'
-import { createClient } from '../prismicio'
-import { predicate } from '@prismicio/client';
+import { createClient, linkResolver } from '../prismicio';
 
 
-const Home = ({ homepage, banner }) => {
+const Home = ({ homepage }) => {
 
   const events = homepage.data.slices.filter(el => el.slice_type === 'event')
   const prices = homepage.data.slices.filter(el => el.slice_type === 'price')
@@ -41,7 +36,7 @@ const Home = ({ homepage, banner }) => {
         <Head>
           <title>Les Thermes - Sauna Gay - Toulouse</title>
           <link rel="icon" href="/favicon.ico" />
-          {/* <link href="/static/image-gallery.css" rel="stylesheet" /> */}
+          {/* <link href="/public/image-gallery.css" rel="stylesheet" /> */}
 
           <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
           <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
@@ -61,10 +56,10 @@ const Home = ({ homepage, banner }) => {
             <img src="/les-thermes.svg" alt="Lettrage Les Thermes - Sauna Masculin" className="name" />
           </div>
 
-          <div className="banner">
+          {/* <div className="banner">
             <h1>{banner.data.title[0].text}</h1>
             <h1><strong>{banner.data.banner_content[0].text}</strong></h1>
-          </div>
+          </div> */}
           <div className="video-container" >
             <ResponsiveEmbed src={videoSrc} allowFullScreen />
           </div>
@@ -383,9 +378,9 @@ export async function getStaticProps({ params, previewData }) {
   const client = createClient({ previewData })
 
   const homepage = await client.getSingle('homepage')
-  const banner = await client.getSingle('banner')
+  // const banner = await client.getSingle('banner')
 
   return {
-    props: { homepage, banner },
+    props: { homepage },
   }
 }
